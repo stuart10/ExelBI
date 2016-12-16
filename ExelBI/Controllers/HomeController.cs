@@ -1,35 +1,98 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using ExelBI.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
+using System.Linq;
 
 namespace ExelBI.Controllers
 {
     public class HomeController : Controller
     {
+
+        //private readonly string workspaceCollection;
+        //private readonly string workspaceId;
+        //private readonly string accessKey;
+        //private readonly string apiUrl;
+
+        private IConfigurationRoot config;
+        private ExelBIContext context;
+
+        //public HomeController(IConfigurationRoot config, ExelBIContext context)
+            public HomeController(ExelBIContext context)
+        {
+            //this.config = config;
+            this.context = context;
+            //this.workspaceCollection = System.Configuration.ConfigurationManager.AppSettings["powerbi:WorkspaceCollection"];
+            //this.workspaceId = ConfigurationManager.AppSettings["powerbi:WorkspaceId"];
+            //this.accessKey = ConfigurationManager.AppSettings["powerbi:AccessKey"];
+            //this.apiUrl = ConfigurationManager.AppSettings["powerbi:ApiUrl"];
+        }
+
         public IActionResult Index()
         {
             return View();
         }
 
-        public IActionResult About()
+        public IActionResult Sales()
         {
-            ViewData["Message"] = "Your application description page.";
+            return View();
+        }
+
+        public IActionResult Customers()
+        {
+            return View();
+        }
+
+        public IActionResult Products()
+        {
+            return View();
+        }
+
+        public IActionResult Suppliers()
+        {
+            return View();
+        }
+        public IActionResult Traffic()
+        {
+            return View();
+        }
+        public IActionResult Campaigns()
+        {
+            return View();
+        }
+
+        public IActionResult UpdateWebProducts()
+        {
+            var data = context.WebProducts.ToList();
 
             return View();
         }
 
-        public IActionResult Contact()
-        {
-            ViewData["Message"] = "Your contact page.";
+        //[ChildActionOnly]
+        //public ActionResult Reports()
+        //{
+        //    using (var client = this.CreatePowerBIClient())
+        //    {
+        //        var reportsResponse = client.Reports.GetReports(this.workspaceCollection, this.workspaceId);
 
-            return View();
-        }
+        //        var viewModel = new ReportsViewModel
+        //        {
+        //            Reports = reportsResponse.Value.ToList()
+        //        };
 
-        public IActionResult Error()
-        {
-            return View();
-        }
+        //        return PartialView(viewModel);
+        //    }
+        //}
+
+        //private IPowerBIClient CreatePowerBIClient()
+        //{
+        //    var credentials = new TokenCredentials(accessKey, "AppKey");
+        //    var client = new PowerBIClient(credentials)
+        //    {
+        //        BaseUri = new Uri(apiUrl)
+        //    };
+
+        //    return client;
+        //}
+
     }
 }

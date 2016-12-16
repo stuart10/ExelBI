@@ -48,6 +48,7 @@ namespace ExelBI
                 .AddDefaultTokenProviders();
 
             services.AddMvc();
+            services.AddDbContext<ExelBIContext>();
 
             // Add application services.
             services.AddTransient<IEmailSender, AuthMessageSender>();
